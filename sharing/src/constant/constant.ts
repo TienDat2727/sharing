@@ -4,8 +4,8 @@ export const dataSignIn: Data = {
     title: "Sign In",
     subTitle1: "or use your email password",
     fieldInput: [
-      {email: "Email"},
-      {password: "Password"}
+      {name: "email" , label : "Email"},
+      {name: "password", label: "Password"}
     ],
     subTitle2: "Forget Your Password",
     contentButton:  "Sign In",
@@ -15,9 +15,9 @@ export const dataSignUp: Data = {
   title: "Create Account",
   subTitle1: "or use your email for register action",
   fieldInput: [
-    {name:  "Name"},
-    {email: "Email"},
-    {password: "Password"}
+    {name: "name", label:  "Name"},
+    {name: "email", label: "Email"},
+    {name: "password", label: "Password"}
   ],
   subTitle2: undefined,
   contentButton:  "Create Register",

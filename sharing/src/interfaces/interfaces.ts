@@ -1,9 +1,12 @@
-type InputField = Record<string, string>;
+export interface FieldInput {
+  name: string;
+  label: string;
+}
 
 export interface Data {
   title: string;
   subTitle1: string;
-  fieldInput: InputField[];
+  fieldInput: FieldInput[];
   subTitle2: string | undefined;
   contentButton: string;
 }

@@ -7,7 +7,7 @@ import {
   FormRegisterType,
   TypeActivePanel,
 } from '../../interfaces/interfaces';
-import { Typography, Form, Button, Input } from 'antd';
+import { Typography, Form , Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import FormIcon from './FormIcon';
 import { ContainerForm } from './FormContainer.styled';
@@ -79,11 +79,7 @@ const FormContainer = ({ state }: FormContainerProps) => {
         {formData.fieldInput.map(value => (
           <Controller
             key={value.name}
-            name={
-              checkSignIn
-                ? (value.name as 'password' | 'email')
-                : (value.name as 'name' | 'email' | 'password')
-            }
+            name={value.name}
             control={control}
             rules={{ required: true }}
             render={({ field }) =>
