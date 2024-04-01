@@ -1,30 +1,32 @@
-import { Typography, Button } from "antd";
-import { TypeActivePanel } from "../../interfaces/interfaces";
-import { dataToogleSignUp } from "../../constant/constant";
-import { BaseButton } from "../Common/ButtonBase/ButtonBase";
-
-const {Title} = Typography;
-const {Paragraph} = Typography;
-
+import ToogleImplement from './ToogleImplement';
+import { ContainerToogle } from './Toogle.styled';
+import { TypeActivePanel } from '../../interfaces/interfaces';
 interface TooglePanelProps {
+  returnTypePanel: () => TypeActivePanel;
   handleChange: () => void;
 }
 
-const TooglePanel = ({ handleChange} : TooglePanelProps) => {
-  
+const TooglePanel = ({ handleChange, returnTypePanel }: TooglePanelProps) => {
   const onChange = () => handleChange();
 
+  const state = returnTypePanel();
+  const isSignIn = state === 'sign-in';
   return (
-    <div className="toogle-container">
-      <div className="toogle">
-        <div className="toogle-panel toogle-right">
-          <Title>{dataToogleSignUp.titleToogle}</Title>
-          <Paragraph>{dataToogleSignUp.subTitleToogle}</Paragraph>
-          <BaseButton onClick={onChange}>{dataToogleSignUp.buttonToogle}</BaseButton>
-        </div>
+    <ContainerToogle className={`${isSignIn ? '' : 'active'}`}>
+      <div className={`toogle`}>
+        <ToogleImplement
+          state='sign-in'
+          handleClick={onChange}
+          isActive={isSignIn}
+        />
+        <ToogleImplement
+          state='sign-up'
+          handleClick={onChange}
+          isActive={isSignIn}
+        />
       </div>
-    </div>
-  )
-}
+    </ContainerToogle>
+  );
+};
 
 export default TooglePanel;

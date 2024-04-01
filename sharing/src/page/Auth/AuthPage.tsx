@@ -1,23 +1,41 @@
-import FormContainer from "../../components/FormCommon/FormContainer"
-import TooglePanel from "../../components/ToogleCommon/ToogelPanel"
-import { TypeActivePanel } from "../../interfaces/interfaces"
-import { Container, Body } from "./Auth.styled"
-
+import { useEffect, useState } from 'react';
+import FormContainer from '../../components/FormCommon/FormContainer';
+import TooglePanel from '../../components/ToogleCommon/ToogelPanel';
+import { TypeActivePanel } from '../../interfaces/interfaces';
+import { Container, Body } from './Auth.styled';
+import WebFont from 'webfontloader';
 const AuthPage = () => {
-  const stateValue: TypeActivePanel = "sign-in";
+  const [typePanel, setTypePanel] = useState<TypeActivePanel>('sign-in');
+  const isSignIn = typePanel === 'sign-in';
   const handleChange = () => {
-    console.log("Đã click");
-  }
+    setTypePanel(prevPanel =>
+      prevPanel === 'sign-in' ? 'sign-up' : 'sign-in'
+    );
+  };
+  const returnTypeActive = () => {
+    return typePanel;
+  };
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Montserrat', 'Roboto'],
+      },
+    });
+  }, []);
   return (
     <Body>
-      <Container >
-        <div className="active">
-        <FormContainer state="sign-in" />
-        <TooglePanel handleChange={handleChange} />
+      <Container>
+        <div className={isSignIn ? '' : 'active'}>
+          <FormContainer state={typePanel} />
+          <TooglePanel
+            handleChange={handleChange}
+            returnTypePanel={returnTypeActive}
+          />
         </div>
       </Container>
     </Body>
-    )
-}
+  );
+};
 
 export default AuthPage;
